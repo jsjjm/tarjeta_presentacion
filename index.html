@@ -1,300 +1,1269 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta charset="UTF8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
     <title>Junior Jimenez</title>
+    <script src="https://use.fontawesome.com/04b8ee3fa8.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+
 </head>
 <body>
 
-    <style>
-        *,
-*::before,
-*::after {
-  box-sizing: border-box;
+<style>
+    @import 'https://fonts.googleapis.com/css?family=Raleway:100,300';
+@import 'https://fonts.googleapis.com/css?family=Open+Sans:300';
+
+* {
+	margin: 0;
+	padding: 0;
+	font-family: 'Raleway', sans-serif;
+	transition: 0.2s ease-out;
+	transition-property: width, height;
+	-webkit-touch-callout: none;
+	-webkit-tap-highlight-color: rgba(255, 255, 255, 0);
 }
 
-h1 {
-  font-family: 'Arima Madurai', cursive;
-  color: black;
-  font-size: 4rem;
-  letter-spacing: -3px;
-  text-shadow: 0px 1px 1px rgba(255, 255, 255, 0.6);
-  position: relative;
-  z-index: 3;
+body {
+	overflow-x: hidden !important;
 }
 
-.container-1 {
-  z-index: 1;
-  position: relative;
-  overflow: hidden;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  min-height: 35rem;
-  background-image: linear-gradient(to bottom, rgba(255, 168, 76, 0.6) 0%, rgba(255, 123, 13, 0.6) 100%), url("https://images.unsplash.com/photo-1446824505046-e43605ffb17f");
-  background-blend-mode: soft-light;
-  background-size: cover;
-  background-position: center center;
-  padding: 2rem;
+
+header {
+	height: 100vh;
+	width: 100vw;
+	overflow-x: hidden !important;
 }
 
-.bird {
-  background-image: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/174479/bird-cells.svg);
-  background-size: auto 100%;
-  width: 88px;
-  height: 125px;
-  will-change: background-position;
-  -webkit-animation-name: fly-cycle;
-          animation-name: fly-cycle;
-  -webkit-animation-timing-function: steps(10);
-          animation-timing-function: steps(10);
-  -webkit-animation-iteration-count: infinite;
-          animation-iteration-count: infinite;
-}
-.bird--one {
-  -webkit-animation-duration: 1s;
-          animation-duration: 1s;
-  -webkit-animation-delay: -0.5s;
-          animation-delay: -0.5s;
-}
-.bird--two {
-  -webkit-animation-duration: 0.9s;
-          animation-duration: 0.9s;
-  -webkit-animation-delay: -0.75s;
-          animation-delay: -0.75s;
-}
-.bird--three {
-  -webkit-animation-duration: 1.25s;
-          animation-duration: 1.25s;
-  -webkit-animation-delay: -0.25s;
-          animation-delay: -0.25s;
-}
-.bird--four {
-  -webkit-animation-duration: 1.1s;
-          animation-duration: 1.1s;
-  -webkit-animation-delay: -0.5s;
-          animation-delay: -0.5s;
+/* Botón basado en: https://codepen.io/designcouch/pen/Atyop */
+#botonMenu {
+	position: fixed;
+	z-index: 50;
+	transform: rotate(0deg);
+	transition: .5s ease-in-out;
+	cursor: pointer;
+	position: fixed;
+	width: 3em;
+	height: 3.5em;
+	margin: 1em;
+	margin-top: 2em;
 }
 
-.bird-container {
-  position: absolute;
-  top: 20%;
-  left: -10%;
-  -webkit-transform: scale(0) translateX(-10vw);
-          transform: scale(0) translateX(-10vw);
-  will-change: transform;
-  -webkit-animation-name: fly-right-one;
-          animation-name: fly-right-one;
-  -webkit-animation-timing-function: linear;
-          animation-timing-function: linear;
-  -webkit-animation-iteration-count: infinite;
-          animation-iteration-count: infinite;
-}
-.bird-container--one {
-  -webkit-animation-duration: 15s;
-          animation-duration: 15s;
-  -webkit-animation-delay: 0;
-          animation-delay: 0;
-}
-.bird-container--two {
-  -webkit-animation-duration: 16s;
-          animation-duration: 16s;
-  -webkit-animation-delay: 1s;
-          animation-delay: 1s;
-}
-.bird-container--three {
-  -webkit-animation-duration: 14.6s;
-          animation-duration: 14.6s;
-  -webkit-animation-delay: 9.5s;
-          animation-delay: 9.5s;
-}
-.bird-container--four {
-  -webkit-animation-duration: 16s;
-          animation-duration: 16s;
-  -webkit-animation-delay: 10.25s;
-          animation-delay: 10.25s;
+#botonMenu span {
+	display: block;
+	position: absolute;
+	height: 0.35em;
+	width: 100%;
+	background: #BEC8D3;
+	border-radius: 9px;
+	opacity: 1;
+	left: 0;
+	transform: rotate(0deg);
+	transition: 0.25s ease-in-out;
 }
 
-@-webkit-keyframes fly-cycle {
-  100% {
-    background-position: -900px 0;
-  }
+#botonMenu span:nth-child(1) {
+	top: 0;
 }
 
-@keyframes fly-cycle {
-  100% {
-    background-position: -900px 0;
-  }
+#botonMenu span:nth-child(2),#botonMenu span:nth-child(3) {
+	top: 0.8em;
 }
-@-webkit-keyframes fly-right-one {
-  0% {
-    -webkit-transform: scale(0.3) translateX(-10vw);
-            transform: scale(0.3) translateX(-10vw);
-  }
-  10% {
-    -webkit-transform: translateY(2vh) translateX(10vw) scale(0.4);
-            transform: translateY(2vh) translateX(10vw) scale(0.4);
-  }
-  20% {
-    -webkit-transform: translateY(0vh) translateX(30vw) scale(0.5);
-            transform: translateY(0vh) translateX(30vw) scale(0.5);
-  }
-  30% {
-    -webkit-transform: translateY(4vh) translateX(50vw) scale(0.6);
-            transform: translateY(4vh) translateX(50vw) scale(0.6);
-  }
-  40% {
-    -webkit-transform: translateY(2vh) translateX(70vw) scale(0.6);
-            transform: translateY(2vh) translateX(70vw) scale(0.6);
-  }
-  50% {
-    -webkit-transform: translateY(0vh) translateX(90vw) scale(0.6);
-            transform: translateY(0vh) translateX(90vw) scale(0.6);
-  }
-  60% {
-    -webkit-transform: translateY(0vh) translateX(110vw) scale(0.6);
-            transform: translateY(0vh) translateX(110vw) scale(0.6);
-  }
-  100% {
-    -webkit-transform: translateY(0vh) translateX(110vw) scale(0.6);
-            transform: translateY(0vh) translateX(110vw) scale(0.6);
-  }
-}
-@keyframes fly-right-one {
-  0% {
-    -webkit-transform: scale(0.3) translateX(-10vw);
-            transform: scale(0.3) translateX(-10vw);
-  }
-  10% {
-    -webkit-transform: translateY(2vh) translateX(10vw) scale(0.4);
-            transform: translateY(2vh) translateX(10vw) scale(0.4);
-  }
-  20% {
-    -webkit-transform: translateY(0vh) translateX(30vw) scale(0.5);
-            transform: translateY(0vh) translateX(30vw) scale(0.5);
-  }
-  30% {
-    -webkit-transform: translateY(4vh) translateX(50vw) scale(0.6);
-            transform: translateY(4vh) translateX(50vw) scale(0.6);
-  }
-  40% {
-    -webkit-transform: translateY(2vh) translateX(70vw) scale(0.6);
-            transform: translateY(2vh) translateX(70vw) scale(0.6);
-  }
-  50% {
-    -webkit-transform: translateY(0vh) translateX(90vw) scale(0.6);
-            transform: translateY(0vh) translateX(90vw) scale(0.6);
-  }
-  60% {
-    -webkit-transform: translateY(0vh) translateX(110vw) scale(0.6);
-            transform: translateY(0vh) translateX(110vw) scale(0.6);
-  }
-  100% {
-    -webkit-transform: translateY(0vh) translateX(110vw) scale(0.6);
-            transform: translateY(0vh) translateX(110vw) scale(0.6);
-  }
-}
-@-webkit-keyframes fly-right-two {
-  0% {
-    -webkit-transform: translateY(-2vh) translateX(-10vw) scale(0.5);
-            transform: translateY(-2vh) translateX(-10vw) scale(0.5);
-  }
-  10% {
-    -webkit-transform: translateY(0vh) translateX(10vw) scale(0.4);
-            transform: translateY(0vh) translateX(10vw) scale(0.4);
-  }
-  20% {
-    -webkit-transform: translateY(-4vh) translateX(30vw) scale(0.6);
-            transform: translateY(-4vh) translateX(30vw) scale(0.6);
-  }
-  30% {
-    -webkit-transform: translateY(1vh) translateX(50vw) scale(0.45);
-            transform: translateY(1vh) translateX(50vw) scale(0.45);
-  }
-  40% {
-    -webkit-transform: translateY(-2.5vh) translateX(70vw) scale(0.5);
-            transform: translateY(-2.5vh) translateX(70vw) scale(0.5);
-  }
-  50% {
-    -webkit-transform: translateY(0vh) translateX(90vw) scale(0.45);
-            transform: translateY(0vh) translateX(90vw) scale(0.45);
-  }
-  51% {
-    -webkit-transform: translateY(0vh) translateX(110vw) scale(0.45);
-            transform: translateY(0vh) translateX(110vw) scale(0.45);
-  }
-  100% {
-    -webkit-transform: translateY(0vh) translateX(110vw) scale(0.45);
-            transform: translateY(0vh) translateX(110vw) scale(0.45);
-  }
-}
-@keyframes fly-right-two {
-  0% {
-    -webkit-transform: translateY(-2vh) translateX(-10vw) scale(0.5);
-            transform: translateY(-2vh) translateX(-10vw) scale(0.5);
-  }
-  10% {
-    -webkit-transform: translateY(0vh) translateX(10vw) scale(0.4);
-            transform: translateY(0vh) translateX(10vw) scale(0.4);
-  }
-  20% {
-    -webkit-transform: translateY(-4vh) translateX(30vw) scale(0.6);
-            transform: translateY(-4vh) translateX(30vw) scale(0.6);
-  }
-  30% {
-    -webkit-transform: translateY(1vh) translateX(50vw) scale(0.45);
-            transform: translateY(1vh) translateX(50vw) scale(0.45);
-  }
-  40% {
-    -webkit-transform: translateY(-2.5vh) translateX(70vw) scale(0.5);
-            transform: translateY(-2.5vh) translateX(70vw) scale(0.5);
-  }
-  50% {
-    -webkit-transform: translateY(0vh) translateX(90vw) scale(0.45);
-            transform: translateY(0vh) translateX(90vw) scale(0.45);
-  }
-  51% {
-    -webkit-transform: translateY(0vh) translateX(110vw) scale(0.45);
-            transform: translateY(0vh) translateX(110vw) scale(0.45);
-  }
-  100% {
-    -webkit-transform: translateY(0vh) translateX(110vw) scale(0.45);
-            transform: translateY(0vh) translateX(110vw) scale(0.45);
-  }
-}
-    </style>
-    <head>
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
-       <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css'> 
-       <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Arima+Madurai">
-      </head>  
-      <div class="container-1">
-          
-        <div class="card p-3" >
-            <h1>José Jimenez</h1>
-          <h4>Desarrollador de Sistemas</h4>
-          </div>
-        
-          <div class="bird-container bird-container--one">
-              <div class="bird bird--one"></div>
-          </div>
-          
-          <div class="bird-container bird-container--two">
-              <div class="bird bird--two"></div>
-          </div>
-          
-          <div class="bird-container bird-container--three">
-              <div class="bird bird--three"></div>
-          </div>
-          
-          <div class="bird-container bird-container--four">
-              <div class="bird bird--four"></div>
-          </div>
-          
-      </div>
 
+#botonMenu span:nth-child(4) {
+	top: 1.6em;
+}
+
+#botonMenu.open span:nth-child(1) {
+	top: 0.8em;
+	width: 0%;
+	left: 50%;
+}
+
+#botonMenu.open span:nth-child(2) {
+	-webkit-transform: rotate(45deg);
+	-moz-transform: rotate(45deg);
+	-o-transform: rotate(45deg);
+	transform: rotate(45deg);
+}
+
+#botonMenu.open span:nth-child(3) {
+	-webkit-transform: rotate(-45deg);
+	-moz-transform: rotate(-45deg);
+	-o-transform: rotate(-45deg);
+	transform: rotate(-45deg);
+}
+
+#botonMenu.open span:nth-child(4) {
+	top: 0.8em;
+	width: 0%;
+	left: 50%;
+}
+
+/* Menú de navegación */
+nav {
+	height: 100%;
+	width: 15em;
+	position: fixed;
+	z-index: 1;
+	top: 0;
+	left: -15em;
+	background-color: #051A30;
+	overflow-x: hidden;
+	transition: 0.5s;
+	padding-top: 5em;
+	z-index: 50;
+	transition: 0.5s;
+	display: flex;
+	flex-direction: column;
+}
+
+nav a {
+	font-size: 2em;
+	padding: 0.5em 1em;
+	text-decoration: none;
+	font-weight: 300;
+	letter-spacing: 0.01em;
+	color: #D5D5D8;
+	
+}
+
+nav a:hover {
+	background: #122C49;
+	transition: .2s ease-in;
+}
+
+@media (max-width: 768px) {
+	nav {
+		width: 100vw;
+		left: -100vw;
+		justify-content: space-around;
+		padding: 1em 0;
+		align-items: center;
+	}
+	nav a {
+		font-size: 2.5em;
+		padding: 0;
+	}
+
+	nav a:hover {
+		background: transparent;
+		color: #3D5A79;
+		transition: .2s ease-in;
+	}
+}
+
+/* Fondos con montañas del header */
+#fondo1 {
+	background: url("https://raw.githubusercontent.com/YuneVK/YuneVK.github.io/master/img/fondouno.png") no-repeat;
+	background-position: center bottom;
+	z-index: 5;
+}
+
+#fondo2 {
+	background: url("https://raw.githubusercontent.com/YuneVK/YuneVK.github.io/master/img/fondodos.png") no-repeat;
+	background-position: center bottom;
+	z-index: 10;
+}
+
+#fondo3 {
+	background: url("https://raw.githubusercontent.com/YuneVK/YuneVK.github.io/master/img/fondotres.png") no-repeat;
+	background-position: center bottom;
+	z-index: 15;
+}
+
+#fondo1, #fondo2, #fondo3 {
+	position: absolute;
+	background-size: cover;
+	height: 100vh;
+	width: 100vw;
+}
+
+/* Div que se usará con particles.js */
+#particles-js {
+	position: absolute;
+	background: radial-gradient(#2F527A, #0B223C);
+	height: 100vh;
+	width: 100vw;
+	z-index: -10;
+}
+
+/* Colores de los elementos SVG (nubes, luna y ornamentos) */
+.st0{opacity:0.79;fill:#FFFFFF;}
+.st1{opacity:0.15;fill:#DDB481;}
+.st2{opacity:0.22;fill:#DDB481;}
+.st3{fill:#DDB481;}
+.st4{fill:#E0C5A4;}
+.st5{fill:#FFFFFF;}
+.st6{fill:#C79665;}
+
+/* Luna en SVG */
+#luna_1_ {
+	position: absolute;
+	bottom: 12vh;
+	left: calc(50vw - 25vh);
+	width: 50vh;
+	z-index: -9;
+}
+
+/* Primer foco de luz de la luna */
+#Luz1 {
+	animation: lucesLuna1 3s ease infinite;
+}
+
+/* Segundo foco de luz de la luna */
+#Luz2 {
+	animation: lucesLuna2 3s ease infinite;
+}
+
+/* Animaciones para las luces de la luna */
+@keyframes lucesLuna1 {
+	0% {opacity: 0.4;}
+	50% {opacity: 0.5;}
+	100% {opacity: 0.4}
+}
+
+@keyframes lucesLuna2 {
+	0% {opacity: 0.2;}
+	50% {opacity: 0.3;}
+	100% {opacity: 0.2}
+}
+
+/* Nubes */
+.nube {
+	fill: #FFF;
+	opacity: 0.7;
+}
+
+#nube1 {
+	position: absolute;
+	width: 22vmax;
+	top: 35vh;
+	animation: nubes 150s infinite linear;
+	margin-left: 40%;
+	z-index: 3;
+}
+
+#nube2 {
+	position: absolute;
+	width: 10vmax;
+	top: 40vh;
+	animation: nubes 110s infinite linear;
+	margin-left: 20%;
+	z-index: 0;
+}
+
+#nube3 {
+	position: absolute;
+	width: 10vmax;
+	top: 50vh;
+	animation: nubes 100s infinite linear;
+	margin-left: 80%;
+	z-index: 0;
+}
+
+#nube4 {
+	position: absolute;
+	width: 22vmax;
+	top: 60vh;
+	animation: nubes 130s infinite linear;
+	margin-left: 60%;
+	z-index: 8;
+}
+
+#nube5 {
+	position: absolute;
+	width: 6vmax;
+	top: 53vh;
+	animation: nubes 90s infinite linear;
+	margin-left: 40%;
+	z-index: 8;
+}
+
+/* Animación para las nubes */
+@keyframes nubes {
+	0% {
+		left: -60%;
+	}
+	100% {
+		left: 120%;
+	}
+}
+
+/* Div que se mostrará cuando no se use particles.js, es decir
+ *	cuando se acceda a la página desde un dispositivo móvil
+ */
+#estrellas {
+	position: absolute;
+	width: 100vw;
+	height: 100vh;
+	background: url("https://raw.githubusercontent.com/YuneVK/YuneVK.github.io/master/img/estrellas.JPG") no-repeat center;
+	background-size: cover;
+	z-index: -9;
+	opacity: 0;
+}
+
+/* Contenido principal del hader, con el título */
+#contenidoHeader {
+	height: 100vh;
+	width: 100vw;
+	display: -ms-flexbox;
+	display: flex;
+	-ms-flex-direction: column;
+	    flex-direction: column;
+	-ms-flex-pack: center;
+	    justify-content: center;
+	-ms-flex-align: center;
+	    align-items: center;
+	text-align: center;
+	position: relative;
+	top: -10vh;
+}
+
+/* Todos los elementos del contenido principal estarán sobre el resto del fondo */
+#contenidoHeader * {
+	z-index: 30;
+}
+
+/* Ornamentos del hader */
+.ornament {
+	fill: rgba(255, 255, 255, 1);
+}
+
+/* Contenido de los ornamentos */
+.ornamentCont {
+	width: 15em;
+}
+
+/* Título de la página en el header */
+#contenidoHeader h1 {
+	font-weight: 100;
+	font-size: 5em;
+	color: #FFF;
+	line-height: 0.8em;
+	letter-spacing: -0.06em;
+	padding: 0.2em;
+	text-shadow: 2px 4px 3px rgba(0,0,0,0.3);
+}
+
+/* 'Ruiz' en el título */
+#contenidoHeader b {
+	font-weight: 300;
+}
+
+/* Subtítulo del header */
+#contenidoHeader h2 {
+	font-weight: 300;
+	font-size: 1.5rem;
+	color: #FFF;
+	line-height: 0.8em;
+	letter-spacing: -0.04em;
+	padding: 0.5em 3em;
+	text-shadow: 2px 4px 3px rgba(0,0,0,0.3);
+}
+
+/* Sección 'Sobre mí' */
+#about {
+	background-color: #0A0618;
+	color: white;
+	padding: 20px;
+	text-align: center;
+	display: -ms-flexbox;
+	display: flex;
+	-ms-flex-direction: column;
+	    flex-direction: column;
+	-ms-flex-pack: center;
+	    justify-content: center;
+	-ms-flex-align: center;
+	    align-items: center;
+}
+
+/* Elemento H1 de cada una de la secciones (su título) */
+.seccion {
+	font-weight: 100;
+	font-size: 2.8em;
+	text-align: center;
+}
+
+/* Línea inferior al título de cada sección */
+.borde {
+	width: 6em;
+	height: 0.25em;
+	background-color: #E0C5A4;
+	border-radius: 10px;
+	margin-top: 0.6em;
+}
+
+/* Texto de la sección 'Sobre mí' */
+#about p {
+	font-family: 'Open Sans', sans-serif;
+	font-weight: 300;
+	font-size: 1.1em;
+	padding: 1.8em;
+	max-width: 800px;
+	letter-spacing: 0.08em;
+	line-height: 1.5em;
+}
+
+/* Ilustración de 'Sobre mí' */
+#girl {
+	width: 70vw;
+	max-width: 500px;
+	height: auto;
+	padding: 1.7em 0;
+}
+
+/* Sección 'Skills' */
+#skills {
+	background-size: 90vmin;
+	z-index: 0;
+}
+
+/* Degradado que se mostrará en el fondo de 'Skills' */
+#skillsFondo {
+	background: radial-gradient(circle, rgba(255,255,255,0.9), rgba(218, 219, 221,0.9));
+	padding-top: 5em;
+}
+
+/* Contenido de la sección */
+#skillsContenido {
+	display: -ms-flexbox;
+	display: flex;
+	-ms-flex-direction: column;
+	    flex-direction: column;
+	-ms-flex-pack: center;
+	    justify-content: center;
+	-ms-flex-align: center;
+	    align-items: center;
+}
+
+/* Título de Skills */
+#skillsContenido h1 {
+	font-weight: 300;
+}
+
+/* Barras de Skills */
+#bars {
+	width: 90vw;
+	max-width: 700px;
+	margin: 3em;
+}
+
+/* Porcentaje que se muestra en cada barra */
+.contador:after{
+	content: "%";
+}
+
+/* Cada una de las barras de skills */
+.skillbar {
+	position: relative;
+	display: block;
+	margin-bottom: 1.6em;
+	width: 100%;
+	background: rgba(193,193,193,0.7);
+	height: 2.7em;
+	border-radius: 3px;
+	transition: 0.4s linear;
+	transition-property: width, background-color;
+}
+
+.skillTitle {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 7em;
+	font-weight: bold;
+	font-size: 1em;
+	color: #ffffff;
+	background: #6adcfa;
+	border-top-left-radius: 3px;
+	border-bottom-left-radius: 3px;
+	text-align: center;
+}
+
+.skillTitle span {
+	display: block;
+	background: rgba(0, 0, 0, 0.1);
+	height: 2.7em;
+	line-height: 2.7em;
+	border-top-left-radius: 3px;
+	border-bottom-left-radius: 3px;
+}
+
+.skillBarra {
+	height: 2.7em;
+	width: 0px;
+	background: #6adcfa;
+	border-radius: 3px;
+}
+
+.porcentaje {
+	position: absolute;
+	right: 1em;
+	top: 0;
+	font-size: 1em;
+	height: 2.7em;
+	line-height: 2.7em;
+	color: rgba(0, 0, 0, 0.6);
+}
+
+/* Sección 'Portfolio' */
+#portfolio {
+	width: 100vw;
+	background-color: #2F527A;
+	display: -ms-flexbox;
+	display: flex;
+	-ms-flex-direction: column;
+	    flex-direction: column;
+	-ms-flex-pack: center;
+	    justify-content: center;
+	-ms-flex-align: center;
+	    align-items: center;
+	text-align: center;
+	position: relative;
+	padding: 1em 0;
+	padding-bottom: 4em;
+}
+
+/* Título de la sección */
+#portfolio h1 {
+	font-weight: 300;
+	color: #D5D5D8;
+}
+
+/* Elementos del portfolio */
+#items {
+	width: 90vw;
+	margin: auto;
+	display: -ms-flexbox;
+	display: flex;
+	-ms-flex-direction: row;
+	    flex-direction: row;
+	-ms-flex-wrap: wrap;
+	    flex-wrap: wrap;
+	-ms-flex-pack: distribute;
+	    justify-content: space-around;
+
+}
+
+/* Cada uno de los elementos */
+.item {
+	height: 20em;
+	width: 20em;
+	background-color: red;
+	margin: 2em;
+	position: relative;
+	cursor: pointer;
+	border-radius: 5px;
+}
+
+/* Información del elemento. Será visible cuando se pase
+ * el ratón por encima
+ */
+.infoItem {
+	position: absolute;
+	height: calc(100% - 2em);
+	width: calc(100% - 2em);
+	background-color: rgba(0,28,52,0.8);
+	opacity: 0;
+	display: -ms-flexbox;
+	display: flex;
+	-ms-flex-direction: column;
+	    flex-direction: column;
+	-ms-flex-pack: center;
+	    justify-content: center;
+	-ms-flex-align: center;
+	    align-items: center;
+	padding: 1em;
+	color: #FFF;
+	text-shadow: 2px 4px 3px rgba(0,0,0,0.3);
+	border-radius: 5px;
+}
+
+/* Cuando se pase el ratón por el item se hará visible */
+.infoItem:hover {
+	opacity: 1;
+	transition: 0.3s;
+	transition-timing-function: ease-in;
+}
+
+/* Título del item */
+.infoItem h1 {
+	padding-bottom: 0.3em;
+	font-size: 2.2em;
+}
+
+/* Icono de enlace del item */
+.fa-link {
+	font-size: 2em;
+	padding: 0.5em;
+}
+
+/* Cada elemento tendrá como fondo una imagen del proyecto */
+#simon {
+	background: url(https://raw.githubusercontent.com/YuneVK/YuneVK.github.io/master/img/simon.PNG) no-repeat center;
+	background-size: cover;
+}
+
+#iwata {
+	background: url(https://raw.githubusercontent.com/YuneVK/YuneVK.github.io/master/img/iwata.PNG) no-repeat center;
+	background-size: cover;
+}
+
+#majoras {
+	background: url(https://raw.githubusercontent.com/YuneVK/YuneVK.github.io/master/img/majoras.PNG) no-repeat center;
+	background-size: cover;
+}
+
+#teorema {
+	background: url(https://raw.githubusercontent.com/YuneVK/YuneVK.github.io/master/img/teorema.PNG) no-repeat center;
+	background-size: cover;
+}
+
+/* Div que separa la sección 'Portfolio' de 'Contacto' */
+#separadorContacto {
+	width: 100vw;
+	height: 4em;
+	background: url(../img/separador3.svg) no-repeat top center;
+	background-size: cover;
+	z-index: 1;
+	position: relative;
+	margin-top: -4em;
+	
+}
+
+/* Sección 'Contacto' */
+#contacto {
+	background-color: #031427;
+	padding: 1.5em;
+	text-align: center;
+	color: #D5D5D8;
+}
+
+/* Título de la sección */
+#contacto h1 {
+	font-weight: 300;
+	
+}
+
+/* Iconos de las redes sociales */
+#social {
+	padding: 2em;
+	display: -ms-flexbox;
+	display: flex;
+	-ms-flex-direction: row;
+	    flex-direction: row;
+	-ms-flex-pack: center;
+	    justify-content: center;
+}
+
+/* Cada uno de los iconos */
+#social * {
+	color: #D5D5D8;
+	font-size: 1.5em;
+	padding: 0 0.3em;
+}
+
+#contacto p {
+	padding: 0.5em;
+}
+
+#contacto a {
+	color: #D5D5D8;
+}
+
+@media (max-width: 768px) {
+	#contenidoHeader h1 {
+		font-size: 4em;
+	}
+
+	.ornamentCont {
+		width: 10em;
+	}
+
+	#contenidoHeader h2 {
+		font-size: 1.2em;
+	}
+
+	#about h1 {
+		font-size: 2.5em;
+	}
+}
+</style>
+
+<!-- Menu de navegacion -->
+<nav>
+    <a href="#about">Sobre mí</a>
+    <a href="#skills">Skills</a>
+    <a href="#portfolio">Portfolio</a>
+    <a href="#contacto">Contacto</a>
+</nav>
+
+<!-- Header -->
+<header>
+    <!-- Boton para abrir/cerrar el menu -->
+    <div id="botonMenu">
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+
+    <!-- Fondo de estrellas usando particles.js -->
+    <div id="particles-js"></div>
+
+    <!-- Fondo con imagen fija que se mostrará en dispositivos móviles -->
+    <div id="estrellas"></div>
+
+    <!-- Luna con SVG -->
+    <svg version="1.1" id="luna_1_" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+     viewBox="0 0 513.8 518" style="enable-background:new 0 0 513.8 518;" xml:space="preserve">
+        <g id="luna">
+            <polygon id="XMLID_209_" class="st0" points="414.1,198.8 416.8,204.4 422.9,205.3 418.5,209.6 419.5,215.7 414.1,212.8 
+                408.6,215.7 409.6,209.6 405.2,205.3 411.3,204.4 	"/>
+            <circle id="Luz2" class="st1" cx="259.9" cy="264.1" r="253.9"/>
+            <path id="Luz1" class="st2" d="M479,264.1C479,143.1,380.9,45,259.9,45c-121,0-219.1,98.1-219.1,219.1
+                c0,121,98.1,219.1,219.1,219.1C380.9,483.2,479,385.1,479,264.1z"/>
+            <circle id="LunaPrincipal" class="st3" cx="259.9" cy="264.1" r="185.8"/>
+            <circle id="ReflejoMayor" class="st4" cx="216.2" cy="234.8" r="127.2"/>
+            <circle id="ReflejoGrande" class="st5" cx="303.4" cy="222.2" r="24.7"/>
+            <circle id="ReflejoPequeno" class="st5" cx="274.2" cy="240.3" r="9.3"/>
+            <path id="SombraCrater5" class="st6" d="M75.7,287.8c11.7,91.4,89.7,162,184.2,162c102.6,0,185.8-83.2,185.8-185.8
+                c0-31.9-8-61.8-22.2-88.1C362.6,473.2,106.4,401,75.7,287.8z"/>
+            <circle id="Crater4" class="st3" cx="176.8" cy="145.9" r="17.9"/>
+            <path id="SombraCrater4" class="st6" d="M174.3,163.6c-8.8-1.2-15.5-8.8-15.4-17.9c0.1-9.9,8.2-17.8,18.1-17.7
+                c3.1,0,5.9,0.8,8.4,2.2C156.8,135.8,163.5,160.6,174.3,163.6z"/>
+            <circle id="Crater3" class="st3" cx="136.5" cy="181.7" r="26.8"/>
+            <path id="SombraCrater3" class="st6" d="M132.8,208.2c-13.2-1.8-23.2-13.2-23.1-26.8c0.2-14.8,12.3-26.6,27.1-26.5
+                c4.6,0.1,8.9,1.3,12.7,3.3C106.5,166.5,116.5,203.6,132.8,208.2z"/>
+            <circle id="Crater2" class="st3" cx="225.7" cy="342.4" r="13.3"/>
+            <path id="SombraCrater2" class="st6" d="M223.8,355.6c-6.5-0.9-11.5-6.6-11.5-13.3c0.1-7.4,6.1-13.3,13.5-13.2
+                c2.3,0,4.4,0.6,6.3,1.7C210.7,334.9,215.7,353.3,223.8,355.6z"/>
+            <path id="Crater1" class="st3" d="M258.6,301.8c10.6,0.1,19.1,8.8,19,19.4c-0.1,10.6-8.8,19.1-19.4,19c-10.6-0.1-19.1-8.8-19-19.4
+                C239.3,310.1,248,301.6,258.6,301.8z"/>
+            <path id="SombraCrater1" class="st6" d="M255.7,340c-9.4-1.3-16.6-9.5-16.5-19.2c0.1-10.6,8.8-19.1,19.4-19c3.3,0,6.4,0.9,9.1,2.4
+                C236.9,310.1,244.1,336.7,255.7,340z"/>
+            <path id="Sombra1" class="st4" d="M343.2,125h-58c-4.5,0-8.2-3.7-8.2-8.2c0-4.5,3.7-8.2,8.2-8.2h58c4.5,0,8.2,3.6,8.2,8.2
+                C351.4,121.4,347.7,125,343.2,125z"/>
+        </g>
+    </svg>
+
+    <!-- Nube 1 en SVG -->
+    <svg version="1.1" id="nube1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+     viewBox="0 0 297.6 99.1" style="enable-background:new 0 0 297.6 99.1;" xml:space="preserve">
+        <path id="XMLID_2_" class="nube" d="M237.4,72.9c2.2-4,3.4-8.6,3.4-13.4c0-15.6-12.6-28.2-28.2-28.2c-9.3,0-17.5,4.4-22.6,11.3
+            c-3.3-2.1-7.2-3.4-11.4-3.4c-8.9,0-16.5,5.6-19.5,13.4c-3.1-3.3-7.5-5.3-12.4-5.3c-7.1,0-13.1,4.3-15.7,10.4
+            c-2.9-4.1-7.5-6.9-12.8-7.3c0.5-2.6,0.8-5.2,0.8-7.9C118.8,19,99.8,0,76.3,0C52.9,0,33.9,19,33.9,42.5c0,0.2,0,0.4,0,0.6
+            c-1.8-0.4-3.7-0.6-5.6-0.6C12.6,42.5,0,55.1,0,70.7S12.6,99,28.2,99v0.1h204.4c7.5,0,13.5-6.1,13.5-13.5
+            C246.1,79.8,242.5,74.9,237.4,72.9z"/>
+    </svg>
+
+    <!-- Nube 2 en SVG -->
+    <svg version="1.1" id="nube2" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+     viewBox="0 0 297.6 111" style="enable-background:new 0 0 297.6 111;" xml:space="preserve">
+        <path class="nube" d="M411.8,445c2.2-4,3.4-8.6,3.4-13.4c0-15.6-12.6-28.2-28.2-28.2c-9.3,0-17.5,4.4-22.6,11.3
+            c-3.3-2.1-7.2-3.4-11.4-3.4c-8.9,0-16.5,5.6-19.5,13.4c-3.1-3.3-7.5-5.3-12.4-5.3c-7.1,0-13.1,4.3-15.7,10.4
+            c-2.9-4.1-7.5-6.9-12.8-7.3c0.5-2.6,0.8-5.2,0.8-7.9c0-23.4-19-42.5-42.5-42.5c-23.4,0-42.5,19-42.5,42.5c0,0.2,0,0.4,0,0.6
+            c-1.8-0.4-3.7-0.6-5.6-0.6c-15.6,0-28.2,12.6-28.2,28.2c0,15.6,12.6,28.2,28.2,28.2v0.1H407c7.5,0,13.5-6.1,13.5-13.5
+            C420.5,451.8,416.9,446.9,411.8,445z"/>
+        <path id="XMLID_2_" class="nube" d="M229.5,84.8c0-14.4-11.7-26-26-26c-1.6,0-3.1,0.1-4.6,0.4c0-0.1,0-0.3,0-0.4
+            c0-9.5-7.7-17.2-17.2-17.2c-7.9,0-14.6,5.4-16.6,12.7c-2.7-2.9-6.3-4.8-10.4-5.4c0.7-2.9,1-5.9,1-9c0-22.1-17.9-40-40-40
+            c-22.1,0-40,17.9-40,40c0,0.4,0,0.8,0,1.1c-2.4-0.7-5-1.1-7.6-1.1c-13.3,0-24.3,10-25.8,22.9c-0.8-0.1-1.6-0.2-2.5-0.2
+            c-8.7,0-15.9,6.4-17,14.8c-1.7-0.6-3.6-0.9-5.6-0.9C7.7,76.6,0,84.3,0,93.8c0,9.5,7.7,17.2,17.2,17.2h188.3v-0.2
+            C219,109.7,229.5,98.5,229.5,84.8z"/>
+    </svg>
+
+    <!-- Nube 3 -->
+    <svg version="1.1" id="nube3" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+     viewBox="0 0 177.4 58.2" style="enable-background:new 0 0 177.4 58.2;" xml:space="preserve">
+        <path id="XMLID_3_" class="nube" d="M153.9,11.2c-8.4,0-15.7,4.4-19.9,11c-2.8-2.4-6.5-3.8-10.5-3.8c-3.9,0-7.4,1.3-10.2,3.6
+            c0-0.1,0-0.3,0-0.4c0-10.9-8.8-19.8-19.8-19.8c-7.5,0-14,4.2-17.3,10.3c-3-2.5-6.9-3.9-11.1-3.9c-4.2,0-8,1.5-11,3.9
+            C49.8,4.8,41.9,0,32.8,0C19.1,0,7.9,11.2,7.9,24.9c0,2.6,0.4,5.2,1.2,7.5C3.8,34.2,0,39.1,0,45c0,6.9,5.4,12.6,12.2,13.1v0h141.7
+            c13,0,23.5-10.5,23.5-23.5S166.9,11.2,153.9,11.2z"/>
+    </svg>
+
+    <!-- Nube 4 -->
+    <svg version="1.1" id="nube4" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+     viewBox="0 0 349.9 107.1" style="enable-background:new 0 0 349.9 107.1;" xml:space="preserve">
+        <path id="XMLID_4_" class="nube" d="M310.6,60.1c-6.7,0-12.7,2.8-16.9,7.2c-3.1-3.5-7.7-5.8-12.8-5.8c-2.6,0-5.1,0.6-7.4,1.7
+            c-4-6.1-10.4-10.6-17.8-12.2c0.6-2.8,0.9-5.7,0.9-8.6c0-23.4-19-42.5-42.5-42.5c-17.9,0-33.2,11.1-39.4,26.8c-2-0.4-4-0.6-6.1-0.6
+            c-14.4,0-26.4,10.1-29.3,23.6c-3.7-1.6-7.8-2.6-12.1-2.6c-2.8,0-5.5,0.4-8,1.1c-1.1-16-14.5-28.7-30.8-28.7
+            c-8.6,0-16.3,3.5-21.9,9.1c-6.7-4.4-14.7-7-23.3-7c-23.4,0-42.5,19-42.5,42.5c0,23.4,19,42.5,42.5,42.5c0.8,0,267.5,0.5,267.5,0.5
+            c13,0,23.5-10.5,23.5-23.5C334.1,70.6,323.6,60.1,310.6,60.1z"/>
+    </svg>
+
+    <!-- Nube 5 -->
+    <svg version="1.1" id="nube5" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+     viewBox="0 0 145.6 70.2" style="enable-background:new 0 0 145.6 70.2;" xml:space="preserve">
+        <path id="XMLID_3_" class="nube" d="M133.4,42.9c0.3-1.1,0.4-2.1,0.4-3.3c0-7.6-6.1-13.7-13.7-13.7c-0.7,0-1.5,0.1-2.2,0.2
+            c-0.5-9.6-8.5-17.3-18.3-17.3c-5.9,0-11.1,2.8-14.4,7C82.5,6.7,74.1,0,64,0c-9.5,0-17.6,6-20.8,14.4c-2.1-1.4-4.7-2.2-7.4-2.2
+            c-7.6,0-13.7,6.1-13.7,13.7C9.9,25.9,0,35.8,0,48c0,11.7,9.1,21.3,20.7,22.1v0.1h111.2c7.6,0,13.7-6.1,13.7-13.7
+            C145.6,49.4,140.2,43.6,133.4,42.9z"/>
+    </svg>
+
+    <!-- Fondos con las montañas -->
+    <div id="fondo1"></div>
+    <div id="fondo2"></div>
+    <div id="fondo3"></div>
+
+    <!-- Contenido principal del header -->
+    <div id="contenidoHeader">
+        <!-- Ornamento de arriba -->
+        <svg version="1.1" id="ornament" class="ornamentCont" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+             viewBox="0 0 180.1 32.1" style="enable-background:new 0 0 180.1 32.1;" xml:space="preserve">
+            <g id="XMLID_106_">
+                <g id="XMLID_146_">
+                    <g id="XMLID_154_">
+                        <g id="XMLID_153_">
+                            <path id="XMLID_158_" class="ornament" d="M172.6,20.3c3.7,0.5,6.8-2.8,6.4-6.4c-0.4-3.8-3.7-6.5-7.1-7.7c-4.6-1.5-10.1-0.7-14.8,0.2
+                                c-4.9,1-9.6,2.6-14.2,4.5c-9.9,4-19.3,9.3-29.5,12.5c-4.9,1.5-12.1,4.2-16.7,0.9c-3.3-2.4-4.6-6.5-3.7-10.4
+                                c1.2-4.8,5.6-9.1,10.2-10.7c3.3-1.2,9.1-1,10,3.3c0.3,1.6-0.3,3.5-1.8,4.3c-1.6,0.8-3.9,0.3-3.6-1.9c0.1-0.7-1.5-1.5-1.6-0.7
+                                c-0.5,3.3,3,5.4,6,4.2c4.2-1.6,3.2-7.3,0.2-9.6c-7.9-6.2-20,3-21.3,11.4c-0.6,3.6,0.7,7.3,3.3,9.9c3.8,3.8,8.6,3.6,13.6,2.5
+                                c12.1-2.6,22.9-8.8,34.2-13.6c6.5-2.8,13.3-5.1,20.4-5.9c4-0.5,8.9-0.7,12.2,1.9c1.9,1.5,3.3,4,2.7,6.5
+                                c-0.6,2.3-2.7,4.1-5.1,3.9C171.8,19.4,172.2,20.3,172.6,20.3L172.6,20.3z"/>
+                        </g>
+                    </g>
+                    <g id="XMLID_147_">
+                        <g id="XMLID_137_">
+                            <path id="XMLID_151_" class="ornament" d="M98.8,26.9c10.3,6.4,24.2,4.1,35,0.2c7.1-2.6,13.8-6.3,20.3-10.1c3.3-1.9,6.6-3.9,10-5.7
+                                c3.2-1.7,6.5-3,10.1-2.5c0.8,0.1,0.3-0.9-0.2-1.1c-5.3-2.2-12,2.7-16.4,5.3c-6.5,3.8-13,7.7-19.9,10.8
+                                c-11.5,5.2-27,8.9-38.7,2.5C98.4,25.8,98.3,26.6,98.8,26.9L98.8,26.9z"/>
+                        </g>
+                    </g>
+                </g>
+                <g id="XMLID_107_">
+                    <g id="XMLID_139_">
+                        <g id="XMLID_130_">
+                            <path id="XMLID_135_" class="ornament" d="M7.1,19.5c-5.9,0.4-5.7-6.6-2.6-9.6C7.3,7.2,11.3,6.8,15,7c6.3,0.3,12.4,2,18.3,4.2
+                                C45,15.6,55.9,22.1,67.9,25.6c4.8,1.4,11.2,3.4,15.7,0.3c3-2,5-5.4,5.1-9C89,8.3,79.1-0.5,70.6,1.2c-4.5,0.9-8.1,6.3-4.2,10.1
+                                c2.5,2.5,7.9,1.7,7.2-2.6C73.5,8,71.9,7.5,72,8.4c0.5,3.7-5.2,3.5-5.5-0.2C66.2,5,69.3,3,72.1,2.7c5.5-0.7,11.4,3.6,13.8,8.4
+                                c1.8,3.5,1.7,7.7-0.8,10.9c-3.8,4.9-9.5,4-14.8,2.7c-10.4-2.6-19.9-7.7-29.6-12c-9-3.9-19-7.9-29-7.2C7,5.8,1.9,8,0.9,13
+                                c-0.7,3.9,2.6,7.9,6.6,7.4C8.1,20.2,7.5,19.4,7.1,19.5L7.1,19.5z"/>
+                        </g>
+                    </g>
+                    <g id="XMLID_108_">
+                        <g id="XMLID_123_">
+                            <path id="XMLID_128_" class="ornament" d="M80.6,26.1c-12,6.4-27.5,2.7-39.3-2.6c-6.9-3.1-13.3-7.1-19.8-10.8
+                                c-4.2-2.4-11-7.4-16.1-5.1C4.7,7.9,5.7,8.8,6.1,8.7c3.9-0.5,7.3,1,10.6,2.8c3.3,1.8,6.6,3.7,9.8,5.6c6.4,3.7,12.8,7.3,19.8,9.8
+                                C57,30.9,71,33.4,81.2,26.9C81.7,26.6,81,25.9,80.6,26.1L80.6,26.1z"/>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </svg>
+
+        <!-- Título -->
+        <h1>Jose <b>Jimenez</b></h1>
+
+        <!-- Ornamento de abajo -->
+        <svg version="1.1" id="Capa_1" class="ornamentCont" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+             viewBox="0 0 180.1 32.1" style="enable-background:new 0 0 180.1 32.1;" xml:space="preserve">
+            <g id="XMLID_106_">
+                <g id="XMLID_146_">
+                    <g id="XMLID_154_">
+                        <g id="XMLID_153_">
+                            <path id="XMLID_158_" class="st0" d="M172.7,12.4c5.9-0.4,5.7,6.6,2.6,9.6c-2.8,2.7-6.8,3.1-10.5,2.9c-6.3-0.3-12.4-2-18.3-4.2
+                                c-11.7-4.4-22.5-10.9-34.6-14.4c-4.8-1.4-11.2-3.4-15.7-0.3c-3,2-5,5.4-5.1,9c-0.2,8.6,9.7,17.4,18.2,15.7
+                                c4.5-0.9,8.1-6.3,4.2-10.1c-2.5-2.5-7.9-1.7-7.2,2.6c0.1,0.7,1.7,1.3,1.6,0.3c-0.5-3.7,5.2-3.5,5.5,0.2c0.2,3.2-2.8,5.2-5.6,5.5
+                                c-5.5,0.7-11.4-3.6-13.8-8.4c-1.8-3.5-1.7-7.7,0.8-10.9c3.8-4.9,9.5-4,14.8-2.7c10.4,2.6,19.9,7.7,29.6,12c9,3.9,19,7.9,29,7.2
+                                c4.5-0.3,9.7-2.5,10.6-7.4c0.7-3.9-2.6-7.9-6.6-7.4C171.7,11.7,172.3,12.4,172.7,12.4L172.7,12.4z"/>
+                        </g>
+                    </g>
+                    <g id="XMLID_147_">
+                        <g id="XMLID_137_">
+                            <path id="XMLID_151_" class="st0" d="M99.3,5.8c12-6.4,27.5-2.7,39.3,2.6c6.9,3.1,13.3,7.1,19.8,10.8c4.2,2.4,11,7.4,16.1,5.1
+                                c0.7-0.3-0.3-1.1-0.7-1.1c-3.9,0.5-7.3-1-10.6-2.8c-3.3-1.8-6.6-3.7-9.8-5.6c-6.4-3.7-12.8-7.3-19.8-9.8
+                                C122.9,1,108.8-1.5,98.6,5C98.1,5.3,98.9,6,99.3,5.8L99.3,5.8z"/>
+                        </g>
+                    </g>
+                </g>
+                <g id="XMLID_107_">
+                    <g id="XMLID_139_">
+                        <g id="XMLID_130_">
+                            <path id="XMLID_135_" class="st0" d="M7.2,11.6c-3.7-0.5-6.8,2.8-6.4,6.4c0.4,3.8,3.7,6.5,7.1,7.7c4.6,1.5,10.1,0.7,14.8-0.2
+                                c4.9-1,9.6-2.6,14.2-4.5c9.9-4,19.3-9.3,29.5-12.5c4.9-1.5,12.1-4.2,16.7-0.9c3.3,2.4,4.6,6.5,3.7,10.4
+                                c-1.2,4.8-5.6,9.1-10.2,10.7c-3.3,1.2-9.1,1-10-3.3c-0.3-1.6,0.3-3.5,1.8-4.3c1.6-0.8,3.9-0.3,3.6,1.9c-0.1,0.7,1.5,1.5,1.6,0.7
+                                c0.5-3.3-3-5.4-6-4.2c-4.2,1.6-3.2,7.3-0.2,9.6c7.9,6.2,20-3,21.3-11.4c0.6-3.6-0.7-7.3-3.3-9.9c-3.8-3.8-8.6-3.6-13.6-2.5
+                                C59.7,7.8,48.9,14,37.6,18.8c-6.5,2.8-13.3,5.1-20.4,5.9c-4,0.5-8.9,0.7-12.2-1.9c-1.9-1.5-3.3-4-2.7-6.5
+                                C2.9,14,5,12.3,7.4,12.4C8.1,12.5,7.6,11.6,7.2,11.6L7.2,11.6z"/>
+                        </g>
+                    </g>
+                    <g id="XMLID_108_">
+                        <g id="XMLID_127_">
+                            <path id="XMLID_152_" class="st0" d="M81,5C70.7-1.4,56.8,1,46.1,4.8c-7.1,2.6-13.8,6.3-20.3,10.1c-3.3,1.9-6.6,3.9-10,5.7
+                                c-3.2,1.7-6.5,3-10.1,2.5c-0.8-0.1-0.3,0.9,0.2,1.1c5.3,2.2,12-2.7,16.4-5.3c6.5-3.8,13-7.7,19.9-10.8c11.5-5.2,27-8.9,38.7-2.5
+                                C81.4,6.1,81.5,5.3,81,5L81,5z"/>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </svg>
+
+        <!-- Subtítulo -->
+        <h2>Desarrollador de sistemas de información</h2>
+    </div>
+</header>
+
+<!-- Sección 'Sobre mí' -->
+<div id="about">
+    <h1 class="seccion">SOBRE MÍ</h1>
+    <div class="borde"></div>
+    <p>Técnico en Desarrollo de Sistemas de Información con enfoque en aplicaciones web y móviles.
+    Apasionado por aportar soluciones innovadoras en el desarrollo de sistemas de ventas, inventario y comercio en línea.
+    Experiencia en proyectos para casas de cambio y sitios web. Comprometido con la actualización constante en tecnologías emergentes
+    para contribuir con eficacia a equipos de desarrollo.</p>
+</div>
+
+
+<!-- Sección 'Skills' -->
+<div id="skills">
+    <!-- Div que se usará para el gradiente del fondo -->
+    <div id="skillsFondo">
+        <!-- Contenido de la sección -->
+        <div id="skillsContenido">
+            <h1 class="seccion">SKILLS</h1>
+            <!-- Barras de skills -->
+            <div id="bars">
+                <div class="skillbar clearfix " data-percent="90%">
+                    <div class="skillTitle" style="background: #d35400;"><span>HTML5</span></div>
+                    <div class="skillBarra" style="background: #e67e22;"></div>
+                    <div class="porcentaje contador">90</div>
+                </div>
+            
+                <div class="skillbar clearfix " data-percent="90%">
+                    <div class="skillTitle" style="background: #0170BA;"><span>CSS3</span></div>
+                    <div class="skillBarra" style="background: #29A9DF;"></div>
+                    <div class="porcentaje contador">90</div>
+                </div>
+
+                <div class="skillbar clearfix " data-percent="80%">
+                    <div class="skillTitle" style="background: #D6BA32;"><span>Javascript</span></div>
+                    <div class="skillBarra" style="background: #DAC353;"></div>
+                    <div class="porcentaje contador">80</div>
+                </div>
+
+                <div class="skillbar clearfix " data-percent="80%">
+                    <div class="skillTitle" style="background: #03627D;"><span>jQuery</span></div>
+                    <div class="skillBarra" style="background: #1D99BE;"></div>
+                    <div class="porcentaje contador">80</div>
+                </div>
+
+                <div class="skillbar clearfix " data-percent="95%">
+                    <div class="skillTitle" style="background: #6C7EB7;"><span>PHP</span></div>
+                    <div class="skillBarra" style="background: #9AA0C6;"></div>
+                    <div class="porcentaje contador">95</div>
+                </div>
+
+                <div class="skillbar clearfix " data-percent="80%">
+                    <div class="skillTitle" style="background: #D02025;"><span>Java</span></div>
+                    <div class="skillBarra" style="background: #E2494D;"></div>
+                    <div class="porcentaje contador">80</div>
+                </div>
+
+                <div class="skillbar clearfix " data-percent="90%">
+                    <div class="skillTitle" style="background: #2C3674;"><span>Photoshop</span></div>
+                    <div class="skillBarra" style="background: #2C3674;"></div>
+                    <div class="porcentaje contador">90</div>
+                </div>
+
+                <div class="skillbar clearfix " data-percent="85%">
+                    <div class="skillTitle" style="background: #FF751B;"><span>After Effects</span></div>
+                    <div class="skillBarra" style="background: #FF9047;"></div>
+                    <div class="porcentaje contador">85</div>
+                </div>
+
+                <div class="skillbar clearfix " data-percent="80%">
+                    <div class="skillTitle" style="background: #52962A;"><span>SEO</span></div>
+                    <div class="skillBarra" style="background: #71B44A;"></div>
+                    <div class="porcentaje contador">80</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Sección 'Portfolio' -->
+<div id="portfolio">
+    <h1 class="seccion">PORTFOLIO</h1>
+    <!-- Items del portfolio -->
+    <div id="items">
+        <div class="item" id="simon">
+            <a href="https://motomagdperu.com/index.php">
+                <div class="infoItem">
+                    <h1>MotoMagd Peru</h1>
+                    <p>Tienda online creado con HTML, CSS y JS, con conexion a ERP Dynamics con base de datos sql server</p>
+                    <i class="fa fa-link" aria-hidden="true"></i>
+                </div>
+            </a>
+        </div>
+
+        <div class="item" id="iwata">
+            <a href="#">
+                <div class="infoItem">
+                    <h1>Tributo a Iwata</h1>
+                    <p>Web homenaje a Satoru Iwata</p>
+                    <i class="fa fa-link" aria-hidden="true"></i>
+                </div>
+            </a>
+        </div>
+
+        <div class="item" id="majoras">
+            <a href="#">
+                <div class="infoItem">
+                    <h1>Majora's Mask</h1>
+                    <p>Pixel art creado en CSS</p>
+                    <i class="fa fa-link" aria-hidden="true"></i>
+                </div>
+            </a>
+        </div>
+
+        <div class="item" id="teorema">
+            <a href="#">
+                <div class="infoItem">
+                    <h1>Teorema de pitágoras</h1>
+                    <p>Demostración del teorema de pitágoras mediante una animación en CSS</p>
+                    <i class="fa fa-link" aria-hidden="true"></i>
+                </div>
+            </a>
+        </div>
+    </div>
+</div>
+
+<!-- Sección 'Contacto' -->
+<div id="contacto">
+    <h1 class="seccion">Contacto</h1>
+    <div id="social">
+        <a href="https://github.com/jsjjm" target='_blank'><i class="fa fa-github" aria-hidden="true"></i></a>
+        <a href="https://codepen.io/josejimeenz99" target='_blank'><i class="fa fa-codepen" aria-hidden="true"></i></a>
+        <a href="" target='_blank'><i class="fa fa-fire" aria-hidden="true"></i></a>
+    </div>
+    <p>Desarrollado por <i class="fa fa-heart" aria-hidden="true"></i> Jose Jimenez</p>
+    <!--<p>Todas las ilustraciones utilizadas en esta página se han obtenido de <a href="http://www.freepik.com">Freepik</a></p>-->
+</div>
 
 </body>
 </html>
+
+<script>
+    $(function() {
+	var height = $(window).height(); // Alto de la página
+	var device = navigator.userAgent; // Navegador que se está usando
+	// Variable que utilizaremos para saber el margen que deberá tener el menú cuando
+	// se muestre u oculte, en función del ancho de la página
+	var leftMenu;
+
+	// Comprobamos si se accede a la página mediante un dispositivo táctil
+	if (device.match(/Iphone/i)|| device.match(/Ipod/i)|| device.match(/Android/i)|| device.match(/J2ME/i)|| device.match(/BlackBerry/i)|| device.match(/iPhone|iPod/i)|| device.match(/Opera Mini/i)|| device.match(/IEMobile/i)|| device.match(/Mobile/i)|| device.match(/Windows Phone/i)|| device.match(/windows mobile/i)|| device.match(/windows ce/i)|| device.match(/webOS/i)|| device.match(/palm/i)|| device.match(/bada/i)|| device.match(/series60/i)|| device.match(/nokia/i)|| device.match(/symbian/i)|| device.match(/HTC/i)) {
+		console.log("Movil");
+		// Si es un móvil mostraremos el fondo estático de estrellas
+		// y la información de los elementos del portfolio no tendrán
+		// el efecto hover, si no que se verán directamente
+		$("#estrellas").css({"opacity": "1"});
+		$(".infoItem").css({"opacity": "1"});
+	} else { // Si no es un móvil
+		// Iniciamos el fondo de particles.js
+		particlesJS("particles-js", {
+  "particles": {
+    "number": {
+      "value": 227,
+      "density": {
+        "enable": true,
+        "value_area": 1025.8919341219544
+      }
+    },
+    "color": {
+      "value": "#ffffff"
+    },
+    "shape": {
+      "type": "circle",
+      "stroke": {
+        "width": 0,
+        "color": "rgba(138,160,186,0.7)"
+      },
+      "polygon": {
+        "nb_sides": 4
+      },
+      "image": {
+        "src": "img/github.svg",
+        "width": 100,
+        "height": 100
+      }
+    },
+    "opacity": {
+      "value": 1,
+      "random": true,
+      "anim": {
+        "enable": true,
+        "speed": 1,
+        "opacity_min": 0,
+        "sync": false
+      }
+    },
+    "size": {
+      "value": 2,
+      "random": true,
+      "anim": {
+        "enable": true,
+        "speed": 2.4362316369040355,
+        "size_min": 2.436231636904035,
+        "sync": false
+      }
+    },
+    "line_linked": {
+      "enable": true,
+      "distance": 60,
+      "color": "#ffffff",
+      "opacity": 0.22096133965703635,
+      "width": 1
+    },
+    "move": {
+      "enable": true,
+      "speed": 1,
+      "direction": "none",
+      "random": true,
+      "straight": false,
+      "out_mode": "out",
+      "bounce": false,
+      "attract": {
+        "enable": false,
+        "rotateX": 600,
+        "rotateY": 600
+      }
+    }
+  },
+  "interactivity": {
+    "detect_on": "canvas",
+    "events": {
+      "onhover": {
+        "enable": true,
+        "mode": "bubble"
+      },
+      "onclick": {
+        "enable": false,
+        "mode": "repulse"
+      },
+      "resize": true
+    },
+    "modes": {
+      "grab": {
+        "distance": 207.079689136843,
+        "line_linked": {
+          "opacity": 1
+        }
+      },
+      "bubble": {
+        "distance": 60.90579092260088,
+        "size": 3,
+        "duration": 1.7053621458328247,
+        "opacity": 0,
+        "speed": 3
+      },
+      "repulse": {
+        "distance": 400,
+        "duration": 0.4
+      },
+      "push": {
+        "particles_nb": 4
+      },
+      "remove": {
+        "particles_nb": 2
+      }
+    }
+  },
+  "retina_detect": true
+});
+
+		// Los dos fondos de montañas (los de la parte posterior) serán fijos
+		// para cambiar la velocidad con la que se mueven al hacer scroll (esto
+		// no se hará en la versión móvil por rendimiento)
+		$("#fondo1").css({"background-attachment": "fixed"});
+		$("#fondo2").css({"background-attachment": "fixed"});
+
+		// Cada vez que se haga scroll
+		$(document).scroll(function() {
+			// Obtenemos el valor del scroll
+			var scrollTop = $(this).scrollTop();
+
+			// Si el valor del scroll es menor que el alto de la página continuaremos.
+			// Se establece así para que lo siguiente solo se ejecute cuando la cabecera
+			// esté visible
+			if(scrollTop < height) {
+				// Movemos los fondos a una velocidad inferior a la del scroll para consegui el efecto parallax
+				$("#fondo1").css({"background-position": "center bottom +" + (scrollTop/1.3) + "px"});
+				$("#fondo2").css({"background-position": "center bottom +" + (scrollTop/1.1) + "px"});
+			}
+		});		
+	}
+
+	// Por cada barra de skill se mostrará la animación
+	$('.skillbar').each(function(){
+		$(this).find('.skillBarra').animate({
+			width:$(this).attr('data-percent')
+		},4000);
+	});
+
+	// También se mostrará una animación en el contador, que irá aumentando su valor
+	$('.contador').each(function () {
+		var $this = $(this);
+		$({ Counter: 0 }).animate({ Counter: $this.text() }, {
+			duration: 4000,
+			easing: 'swing',
+			step: function () {
+				$this.text(Math.ceil(this.Counter));
+			}
+		});
+	});
+
+	/* 
+	 * Smooth scrolling (transiciones al navegar entre las secciones de la página por el menú)
+	 * https://css-tricks.com/snippets/jquery/smooth-scrolling/
+	 */
+	$('a[href*="#"]:not([href="#"])').click(function() {
+		if (location.pathname.replace(/^\//,'') == this.pathname.replace(/^\//,'') && location.hostname == this.hostname) {
+			var target = $(this.hash);
+			target = target.length ? target : $('[name=' + this.hash.slice(1) +']');
+			if (target.length) {
+				$('html, body').animate({
+					scrollTop: target.offset().top
+				}, 1000);
+				ocultarMenu();
+				return false;
+			}
+		}
+	});
+
+	// Cuando se pulse sobre el botón del menú para abrirlo o cerrarlo
+	$('#botonMenu').click(function() {
+		ocultarMenu();
+	});
+
+	/**
+	 * Función ocultarMenu
+	 * Oculta o muestra el menú de navegación
+	 */
+	function ocultarMenu() {
+		// Para mostrar el menú tendremos que cambiar el margen de este.
+		// Como tenemos dos tipos de menú en función del ancho de la ventana, 
+		// obtenemos este valor para establecer el margen que tendrá
+		if ($(window).width() <= 768) {
+			leftMenu = "-100vw";
+		} else {
+			leftMenu = "-15em";
+		}
+
+		// Creamos o eliminamos la clase 'open' del botón para que cambie de aspecto
+		$('#botonMenu').toggleClass('open');
+
+		// Si el margen de la barra es 0, se estará mostrando, por lo que cambiamos
+		// su margen al calculado para ocultarla
+		if ($("nav").css("left") == '0px') {
+			$("nav").css({"left": leftMenu});
+		} else { // Si la barra está oculta
+			// Cambiamos su margen a 0 para mostrarla
+			$("nav").css({"left": "0"});
+		}
+	}
+});
+</script>
